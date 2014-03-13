@@ -1,0 +1,290 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/*
+* Core
+*/
+
+html
+{
+	-webkit-overflow-scrolling: touch;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	background: url(img/bg-main.png);
+	font-family: 'Ubuntu', sans-serif;
+}
+
+body
+{
+	padding: 0;	
+}
+
+/*
+* Main 
+*/
+
+#body
+{
+	width: 307px;
+}
+
+#display
+{
+	height: 90px;
+	background: -moz-linear-gradient(
+		top,
+		#EBECDC 0%,
+		#D5D9B8 40%,
+		#D5D9B8 60%,
+		#EBECDC);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#EBECDC),
+		color-stop(0.4, #D5D9B8),
+		color-stop(0.6, #D5D9B8),
+		to(#EBECDC));
+		margin-bottom: 15px;
+		text-align: right;
+}
+
+#display .value
+{
+	color: #062512;
+	display: inline-block;
+	line-height: 90px;
+	margin: 0 5px;
+}
+
+.numDigits1 { font-size: 50px; }
+.numDigits2 { font-size: 50px; }
+.numDigits3 { font-size: 50px; }
+.numDigits4 { font-size: 50px; }
+.numDigits5 { font-size: 50px; }
+.numDigits6 { font-size: 50px; }
+.numDigits7 { font-size: 50px; }
+.numDigits8 { font-size: 50px; }
+.numDigits9 { font-size: 50px; }
+.numDigits10 { font-size: 50px; }
+.numDigits11 { font-size: 50px; }
+.numDigits12 { font-size: 48px; }
+.numDigits13 { font-size: 45px; }
+.numDigits14 { font-size: 40px; }
+.numDigits15 { font-size: 37px; }
+.numDigits16 { font-size: 35px; }
+.numDigits17 { font-size: 34px; }
+.numDigits18 { font-size: 32px; }
+.numDigits19 { font-size: 30px; }
+.numDigits20 { font-size: 29px; }
+.numDigits21 { font-size: 27px; }
+.numDigits22 { font-size: 25px; }
+.numDigits23 { font-size: 24px; }
+.numDigits24 { font-size: 23px; }
+.numDigits25 { font-size: 22px; }
+.numDigits26 { font-size: 21px; }
+.numDigits27 { font-size: 20px; }
+.numDigits28 { font-size: 19px; }
+.numDigits29 { font-size: 18px; }
+.numDigits30 { font-size: 17px; }
+
+
+/*
+* Buttons 
+*/
+
+.row
+{
+	margin-bottom: 15px;
+}
+
+.row .right 
+{
+	float: right; 
+}
+
+.row b
+{
+	display: inline-block;
+	padding: 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border-bottom: solid #333 1px;
+	border-left: solid #333 1px;
+	border-right: solid #333 1px;
+	border-top: solid #000 1px;
+	padding: 1px;
+	margin-right: 10px;
+}
+
+.row b.selected 
+{
+	border: solid #fff 1px;
+	background: #fff;
+}
+
+.row b:last-child
+{
+	margin-right: 0;
+}
+
+.row button
+{
+	width: 65px;
+	cursor: pointer;
+	color: #ffffff;
+	padding: 11px 20px;
+	font-size: 16px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 0 solid #000;
+	-moz-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 1px 1px rgba(255,255,255,0.5);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 1px 1px rgba(255,255,255,0.5);
+	box-shadow:
+		0px 1px 3px rgba(000,000,000,0),
+		inset 0px 1px 1px rgba(255,255,255,0.5);
+	text-shadow:
+		0px -1px 0px rgba(0,0,0,.8),
+		0px 1px 0px rgba(255,255,255,0);
+		margin: 0;
+}
+
+.row button.zero
+{
+	width: 144px;	
+}
+
+.row button.memory 
+{
+	background: -moz-linear-gradient(
+		top,
+		#999DA0 0%,
+		#999DA0 40%,
+		#575D61 60%,
+		#575D61);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#999DA0),
+		color-stop(0.4, #999DA0),
+		color-stop(0.6, #575D61),
+		to(#575D61));
+}
+
+.row button.memory.pushed
+{
+	background: -moz-linear-gradient(
+		bottom,
+		#999DA0 0%,
+		#999DA0 40%,
+		#575D61 60%,
+		#575D61);
+	background: -webkit-gradient(
+		linear, left bottom, left top, 
+		from(#999DA0),
+		color-stop(0.4, #999DA0),
+		color-stop(0.6, #575D61),
+		to(#575D61));
+}
+
+.row button.operation 
+{
+	background: -moz-linear-gradient(
+		top,
+		#9E928B 0%,
+		#9E928B 40%,
+		#5F4D43 60%,
+		#5F4D43);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#9E928B),
+		color-stop(0.4, #9E928B),
+		color-stop(0.6, #5F4D43),
+		to(#5F4D43));
+}
+
+.row button.operation.pushed
+{
+	background: -moz-linear-gradient(
+		bottom,
+		#9E928B 0%,
+		#9E928B 40%,
+		#5F4D43 60%,
+		#5F4D43);
+	background: -webkit-gradient(
+		linear, left bottom, left top, 
+		from(#9E928B),
+		color-stop(0.4, #9E928B),
+		color-stop(0.6, #5F4D43),
+		to(#5F4D43));
+}
+
+.row button.number 
+{
+	background: -moz-linear-gradient(
+		top,
+		#484848 0%,
+		#484848 40%,
+		#000000 60%,
+		#000000);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#484848),
+		color-stop(0.4, #484848),
+		color-stop(0.6, #000000),
+		to(#000000));
+}
+
+.row button.number.pushed
+{
+	background: -moz-linear-gradient(
+		bottom,
+		#484848 0%,
+		#484848 40%,
+		#000000 60%,
+		#000000);
+	background: -webkit-gradient(
+		linear, left bottom, left top, 
+		from(#484848),
+		color-stop(0.4, #484848),
+		color-stop(0.6, #000000),
+		to(#000000));
+}
+
+.row button.equals 
+{
+	height: 99px;
+	font-size: 25px;
+	background: -moz-linear-gradient(
+		top,
+		#FBB983 0%,
+		#FBB983 10%,
+		#F27C19 20%,
+		#F27C19);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#FBB983),
+		color-stop(0.1, #FBB983),
+		color-stop(0.2, #F27C19),
+		to(#F27C19));
+}
+
+.row button.equals.pushed
+{
+	background: -moz-linear-gradient(
+		bottom,
+		#FBB983 0%,
+		#FBB983 40%,
+		#F27C19 60%,
+		#F27C19);
+	background: -webkit-gradient(
+		linear, left bottom, left top, 
+		from(#FBB983),
+		color-stop(0.4, #FBB983),
+		color-stop(0.6, #F27C19),
+		to(#F27C19));
+}

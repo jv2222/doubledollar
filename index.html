@@ -1,0 +1,913 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>DoubleDollar - JavaScript Application Framework</title>
+<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400' rel='stylesheet' type='text/css'>
+<link href='apps/introduction/css/style.css' rel='stylesheet' type='text/css'>
+<script src="$$/lib/head.load.min.js"></script>
+<script>head.js('apps/introduction/app/$$._bootstrap.js');</script>
+</head>
+<body>
+<div id="body">
+		<div id="header">
+			<div class="pattern">
+				<div id="dd"></div>
+				<h1 class="logo"><a href="./">DoubleDollar</a></h1>
+				<div class="tagline">JavaScript Application Framework</div>
+			</div>			
+		</div>
+		<div id="main-nav">
+			<a href="./">Introduction</a>
+			<a href="./doubledollar.zip">Download</a>
+			<!--
+			<a href="#">Docs</a>
+			<a href="#">Code Generator</a>
+			<a href="#">Add-ons</a>
+			-->
+		</div>
+		<div id="nav">
+			<ul>
+
+				<li><a href="#welcome">Welcome</a></li>
+				<li><a href="#demos">Demos</a></li>
+				
+				<li class="seperator"><a href="#hello">Hello World</a></li>
+				<li><a href="#routing">Routing</a></li>
+				<li><a href="#default-routing">Default routing</a></li>
+				<li><a href="#controllers">Controllers</a></li>
+				<li><a href="#models">Models</a></li>
+				
+				<li class="seperator"><a href="#ui">UI</a></li>
+				<li><a href="#events">Bindings</a></li>
+				<li><a href="#templates">Templates</a></li>
+				<li><a href="#content">Content</a></li>
+				<li><a href="#css">CSS</a></li>
+
+				<li class="seperator"><a href="#add-ons">Add-ons</a></li>
+				<li><a href="#deep-add-ons">Deep Add-ons</a></li>
+				<li><a href="#auto-running">Auto-running</a></li>
+				<li><a href="#overdubbing">Overdubbing</a></li>
+				<li><a href="#constructors">Constructors</a></li>
+
+				<li class="seperator"><a href="#lazy-loading">Lazy Loading</a></li>
+				<li><a href="#device-targeting">Device Targeting</a></li>
+				<li><a href="#routing-variables">Routing Variables</a></li>
+				<li><a href="#state-variables">State Variables</a></li>
+				<li><a href="#kernal-hooks">Kernal Hooks</a></li>
+				
+				<li class="seperator"><a href="#architecture">Architecture</a></li>
+				<li><a href="#convention">Convention</a></li>
+				<li><a href="#enhancing">Enhancing</a></li>
+				<li><a href="#mobile">Mobile</a></li>
+				<li><a href="#about">About</a></li>
+
+			</ul>
+		</div>
+		<div id="content">
+
+<!-- Backdented to make the code pre format nicely -->
+<a name="hash:welcome"></a>
+
+<br />
+
+<em>Update: I see a few folks are coming here from Hacker News. This project was not ready for public release or review. Examples and docs need to be created etc. Should have been behind a firewall. However, since you're here please feel free to email jv@vip.ie with suggestions, feedback, etc. Thx.</em>
+
+<h2>Code, with a Clear Mind</h2>
+
+<p>DoubleDollar is a new kind of JavaScript Framework, that enables you to create pure JavaScript applications with beautiful Zen-like code. Built on jQuery, DoubleDollar is lightning fast, requires no compiler, and is infinitely extendable.
+</p>
+
+<a name="hash:demos"></a>
+<h2>Demos</h2>
+
+<ul>
+
+	<li><a href="apps/hello-world/" target="_blank">Hello World</a> [<a href="apps/hello-world/app/$$.home.js" target="_blank">view source</a>]</li>
+
+	<li><a href="#welcome">This website</a> [<a href="apps/introduction/app/$$.home.js" target="_blank">view source</a>]</li>
+
+	<li><a href="apps/calculator/" target="_blank">Calculator</a> [<a href="apps/calculator/app/$$.home.js" target="_blank">view source</a>]</li>
+
+</ul>
+
+
+<a name="hash:hello"></a>
+<h2>Hello World</h2>
+<p>
+	This is how to code a <b>Hello World</b> application in DoubleDollar.
+</p>
+
+<code>
+$$
+({
+	home :
+	{
+		route :
+		{
+			default : function()
+			{
+				$('body').html('Hello World');
+			}
+		}
+	}
+})
+</code>
+
+<a name="hash:routing"></a>
+<h2>Routing</h2>
+
+<p>
+	This is how to code a route in DoubleDollar. In this case user/login.
+</p>
+			
+<code>
+http://yourwebsite.com/#user/login
+</code>
+			
+<p>
+	To activate the route, code this.
+</p>
+			
+<code>
+$$
+({
+	<s>// Main namespace (maps to #user)</s>	
+	user :
+	{
+		route :
+		{
+			<s>// Login controller (maps to #user/login)</s>	
+			login : function()
+			{
+				$('body').html("Login HTML goes here.");
+			}
+		}
+	}
+})
+</code>
+
+<em>
+	Note: Browser back/forward buttons are automatically handled by DoubleDollar.
+</em>
+
+<a name="hash:default-routing"></a>
+<h2>Default Routing</h2>
+
+<p>This is how to access a default route in DoubleDollar.</p> 
+
+<code>
+http://yourwebsite.com/#user
+</code>
+
+<p>To hook into a default route code this.</p>
+
+<code>
+$$
+({
+	user :
+	{
+		route :
+		{
+			<s>// This acts like index.html for #user</s>
+			default : function()
+			{
+				$('body').html("I am the defaut route for user.");
+			}
+		}
+	}
+})
+</code>
+
+<a name="hash:controllers"></a>
+<h2>Controllers</h2>
+
+<p>
+	Controllers are initialized in the route namespace as described above. This is how to code a controller in DoubleDollar. In this case user/login.
+</p>
+			
+<code>
+http://yourwebsite.com/#user/login
+</code>
+			
+<p>
+	To activate the controller, code this.
+</p>
+			
+<code>
+$$
+({
+	<s>// Main namespace (maps to #user)</s>	
+	user :
+	{
+		route :
+		{
+			<s>// Login controller (maps to #user/login)</s>	
+			login : function()
+			{
+				$('body').html("Login HTML goes here.");
+			}
+		}
+	}
+})
+</code>
+
+<a name="hash:models"></a>
+<h2>Models</h2>
+
+<p>
+	This is how to code a model in DoubleDollar.
+</p>
+
+<code>
+$$
+({
+	user :
+	{
+		<s>// The model namespace</s>
+		model :
+		{
+			login : function(username,password)
+			{
+
+				<s>// .. code here to get a response from the server ..</s>
+				
+				if ( isValidated )
+				{
+					return 'OK'; 
+				}
+				else
+				{
+					return 'You entered a bad password. Please try again.';
+				}
+			}
+		}
+	}
+})
+</code>
+
+<em>Note: Models are not formalized, or required.</em>
+
+
+<a name="hash:ui"></a>
+<h2>UI</h2>
+
+<p>
+	This is how to code UI logic in DoubleDollar.
+</p>
+
+<code>
+$$
+({
+	home :
+	{
+		route :
+		{
+			default : function(routingParams)
+			{
+				<s>// Default route code here</s>
+			}
+		},
+		
+		<s>// The UI namespace. UI specific logic goes here.</s>
+		ui :
+		{
+			resizeContent : function()
+			{
+				$('#body #content').css({height:$$.state.winHeight-260});
+			}
+		}
+		
+		<s>// Bindings namespace.</s>
+		bind :
+		{
+			<s>// In this case, we make use of our UI logic on app init.</s>
+			do_bind_resizeContent : function()
+			{
+				$(window).resize(function() 
+				{
+					$$.home.ui.resizeContent();
+				});
+				
+				$$.home.ui.resizeContent();
+				
+			},
+		}
+	}
+})
+</code>
+
+<em>
+	Note: The above code is used on this page.
+</em>
+
+<a name="hash:events"></a>
+<h2>Bindings</h2>
+
+<p>
+	This is how to bind events in DoubleDoller. In this case, binding code to the login button.
+</p>
+			
+<code>
+$$
+({
+	user :
+	{
+		route :
+		{
+			login : function()
+			{
+				<s>// Render the login screen</s>
+				$('body').html($$.user.tpl.login());
+				
+				<s>// Bind the login code</s>
+				$$.user.bind.loginButton();
+			}
+		},
+
+		<s>// The binding namespace</s>		
+		bind :
+		{
+			loginButton : function()
+			{
+				$('.loginForm .loginButton').click(function()
+				{
+					<s>// Login code goes here</s>
+				});
+			}
+		}
+	}
+})
+</code>
+
+<em>
+	Note: The dom is ripped apart and re-drawn. Bindings are added as needed. This ensures the dom, and browser, are processing a bare minimum of events. Which in turn minimize memory footprint and optimizes responsiveness.
+</em>
+
+<a name="hash:templates"></a>
+<h2>Templates</h2>
+
+<p>
+	Templates are best used for ui and chrome such as dialogs and popups (i.e not content). This is how to code a template in DoubleDollar. 
+</p>
+			
+<code>
+$$
+({
+	user :
+	{
+		<s>// Template namespace</s>
+		tpl :
+		{
+			login : function()
+			{
+				var html =
+				'&lt;div class="loginForm">Please Login:&lt;/div&gt;'+
+					'&lt;h1>Please Login:&lt;/h1&gt;'+
+					'&lt;input type="text" id="username"&gt;&lt;br /&gt;'+
+					'&lt;input type="text" id="password"&gt;&lt;br /&gt;'+
+					'&lt;a href="#" class="loginButton"&gt;Login&lt;/a&gt;'+
+				'&lt;div&gt;';
+				return html;
+			}
+		}
+	}
+})
+</code>
+			
+<em>
+	Note: Templates are javascript functions that return HTML. They may contain conditional logic, and often do.
+</em>
+
+<p>
+	This is how to use a template.
+</p>
+			
+<code>
+$('body').html($$.user.tpl.login());
+</code>
+
+
+<a name="hash:content"></a>
+<h2>Content</h2>
+
+<p>
+	This how to load html content directly into a page with DoubleDollar.
+</p>
+
+<code>
+$$.content.loadPage
+({
+	'pagePath' : 'some/html/page.html',
+	'targetDiv' : '#someTargetDiv'
+});
+</code>
+
+<em>Note: You will need to load the <b>$$.js.(content)</b> add-on in your <b>$$._bootstrap.js</b> file.</em>
+
+
+
+<a name="hash:css"></a>
+<h2>CSS</h2>
+
+<p>This is how to add CSS files on the fly with DoubleDollar.</p>
+
+<code>
+$$
+({
+	user :
+	{
+		css_files :
+		[
+			'css/user.css',
+			'http://fonts.googleapis.com/css?family=Ubuntu|Lemon'
+		]
+	}
+})
+</code>
+
+<em>Note: Use this feature to create cohesion between frontend assets and controllers. Also use this feature for creating bundeled addons within a single folder.</em>
+
+
+
+<a name="hash:add-ons"></a>
+<h2>Add-ons</h2>
+
+<p>
+	<i>All code (other than the $$.js Kernal) is an add-on.</i> This includes routing, controllers, templates and public add-ons created by the community.
+</p>
+<p>
+	This is how to build an add-on in DoubleDollar.
+</p>
+<code>
+$$
+({
+	timeStamp : function()
+	{
+		var date = new Date;
+		return date.getTime();
+	}
+})
+</code>
+<p>
+	This is how to use the new add-on.
+</p>
+<code>
+alert($$.timeStamp());
+</code>
+
+<p>
+	This is how to dynamically load an add-on on-the-fly.
+</p>
+
+<code>
+$$.getAddOn
+(
+	<s>// Serve add-on</s>
+	'http://yourserver.com/addons/timeStamp',
+	
+	<s>// Execute a function once the add-on is loaded</s>
+	function()
+	{
+		alert($$.timeStamp());
+	}
+);
+</code>
+
+<em>Note: Any add-on may be dynamically loaded including routers, models, templates, etc.</em>
+
+<a name="hash:deep-add-ons"></a>
+<h2>Deep Add-ons</h2>
+
+<p>
+	This is how create a multi-functional add-on.
+</p>
+
+<code>
+$$
+({
+	time :
+	{
+		timeStamp : function()
+		{
+			var date = new Date;
+			return date.getTime();
+		},
+		
+		dateString : function()
+		{
+			var date = new Date;
+			return date.toDateString();
+		}
+	}
+})
+</code>
+
+<p>
+	This is how to use it.
+</p>
+
+<code>
+alert($$.time.timeStamp());
+alert($$.time.dateString());
+</code>
+
+<a name="hash:auto-running"></a>
+<h2>Auto-running</h2>
+
+<p>
+	This is how to auto-run some code when an add-on is being loaded.
+</p>
+
+<code>
+$$
+({
+	time :
+	{
+		state :
+		{
+			todaysDate : false
+		},
+
+		<s>// Any function with the name do_* will be executed</s>
+		do_init : function()
+		{
+			$$.time.state.todaysDate = $$.time.dateString();
+		},
+			
+		dateString : function()
+		{
+			var date = new Date;
+			return date.toDateString();
+		}
+	}
+})
+</code>
+
+<em>Note: We are initializing <b>$$.time.state.todaysDate</b> with todays date. This works with dynamically loaded add-ons too. Note how we are referenceing functions in the add-on being loaded.</em>
+
+<a name="hash:overdubbing"></a>
+<h2>Overdubbing</h2>
+
+<p>
+	Imagine you downloaded the above <b>$$.time</b> add-on from a public repository and loaded it into your app. While the add-on is running live, you can alter it in memory.
+</p>
+<p>
+	For example, to overdubb the <b>dateString</b> function to allow the passing of a custom date object you could code and run this in DoubleDollar.
+</p>
+<code>
+$$
+({
+	time :
+	{
+		<s>// Our new, improved, function </s>
+		dateString : function(passInDate)
+		{
+			var date = ( passInDate !== undefined ? passInDate : new Date); 
+			return date.toDateString();
+		}
+	}
+})
+</code>
+
+<em>
+	Note: Overdubbing enables you to customize public add-ons without changing any code. Then, if the author releases an update, you can drop it in with very little chance of it breaking anything.
+</em>
+
+<a name="hash:constructors"></a>
+<h2>Constructors</h2>
+
+<p>With DoubleDollar you can add Constructors to any namespace. This allows you to abstract and functionalize code.</p>
+
+<code>
+$$
+({
+	time :
+	{
+		dateString :
+		{
+			<s>// Default will be executed when $$.time.dateString() is invoked</s>
+			__construct : function(passInDate)
+			{
+				var date = $$.time.dateString.dateFactory();
+				
+				if ( passInDate !== undefined )
+				{
+					date = passInDate;
+				}
+
+				return date.toDateString();
+			},
+			
+			dateFactory : function()
+			{
+				return new Date;
+			}
+		}
+	}
+})
+</code>
+
+<em>Note: This can be achieved with basic JavaScript prototyping. We added this in to make it easy for folks to get started with the concept.</em>
+
+
+
+
+<a name="hash:lazy-loading"></a>
+<h2>Lazy Loading</h2>
+
+<p>
+	With lazy loading you can store huge swathes of your application server-side, and load functionality as needed. This reduces initial load and keeps the application memory footprint low.
+</p>
+
+<p>
+	Let's say you wanted to build an app like Microsoft Word, with hundreds of menues. You could do that with lazy loading. Simply load the required functionality as users select menu options.
+</p>
+
+<p>
+	We already said this in the add-ons section, but it's worth repeating. This is how to lazy load add-ons via ajax in DoubleDollar.
+</p>
+
+<code>
+$$.getAddOn
+(
+	<s>// Serve up a json add-on</s>
+	'http://yourserver.com/addons/timeStamp',
+	
+	<s>// Execute a function once the add-on is loaded</s>
+	function()
+	{
+		alert($$.timeStamp());
+	}
+);
+</code>
+
+<em>Note: This includes controllers, models, templates,etc.</em>
+
+<a name="hash:device-targeting"></a>
+<h2>Device Targeting</h2>
+
+<p>This is how to target a specific device or operating system in DoubleDollar.</p>
+
+<p>In JavaScript:</p>
+
+<code>
+if ( $$.state.isPhone || $$.state.isOsx )
+{
+	<s>// Do this</s>
+}
+</code>
+
+<p>In CSS:</p>
+
+<code>
+&lt;style&gt;
+	.isPhone, .isOsx
+	{ 
+		<s>// Do this</s> 
+	}
+&lt;/style&gt;
+</code>
+
+<p>DoubleDollar alters the <b>&lt;body&gt;</b> tag when it initializes. This is what it looks like after initilization.</p>
+
+<code>
+&lt;body class="isWebkit isChrome isMac"&gt;
+</code>
+
+<p>This works nicely for sharing code between Android, iPhone, iPad etc on PhoneGap.</p>
+
+<a name="hash:routing-variables"></a>
+<h2>Routing Variables</h2>
+
+<p>This is how to pass variables via links in DoubleDollar. In this case, to the route #user/login.</p>
+
+<code>
+http://yourwebsite.com/#user/login/userid:1/username:jv2222
+</code>
+
+<p>To access routing variables, code this.</p>
+
+<code>
+$$
+({
+	user :
+	{
+		route :
+		{
+			login : function(routingVars)
+			{
+				alert(routingVars.userid);
+				alert(routingVars.username);
+			}
+		}
+	}
+})
+</code>	
+
+<em>
+	Note: This enables users to  bookmark, or share deep links to your app. Routing variables also become part of the browser history by default. Try clicking back now!
+</em>
+
+<a name="hash:state-variables"></a>
+<h2>State Variables</h2>
+
+<p>This is how to keep state in DoubleDollar.</p>
+
+<code>
+$$
+({
+	user :
+	{
+		<s>// State namespace</s>
+		state :
+		{
+			isLoggedIn : false
+		}
+	}
+})
+</code>
+
+<p>This is how to chage state.</p>
+
+<code>
+$$.user.state.isLoggedIn = true;
+</code>
+
+<p>This is how to test state.</p>
+
+<code>
+if ( ! $$.user.state.isLoggedIn )
+{
+	alert('Please login!');
+}
+</code>
+
+<a name="hash:kernal-hooks"></a>
+<h2>Kernal Hooks</h2>
+
+<p>You can be adventurous, and add parsing hooks to the DoubleDollar Kernal like this.</p>
+
+<code>
+$$
+({
+	hooks :
+	{
+		<s>// Add a wildcard hook</s>
+		wildcard :
+		{
+			myWildCardHook_ : function(probablyUnusedKey,incomingHookFunction)
+			{
+				incomingHookFunction();
+			}
+		},
+		
+		<s>// Add a name specific hook</s>
+		name :
+		{
+			myNameHook : function(probablyUnusedKey,incomingHookFunction)
+			{
+				incomingHookFunction();
+			}
+		}
+	}
+})
+</code>
+
+<em>Note: Hooks will only work in code loaded sequentially after the hooks were added ;)</em>
+
+<p>Your hooks will work exactly the same as <a href="#auto-running">Auto-running</a>. Here's how you can use your new hooks.</p>
+
+<code>
+$$
+({
+	<s>// Invoke your wildcard hook</s>
+	myWildCardHook_anyNameIWant : function()
+	{
+		alert("Hello world!");
+	},
+	
+	<s>// Invoke your name specific hook</s>
+	myNameHook : function()
+	{
+		alert("Hello world!");
+	}
+})
+</code>
+
+<a name="hash:architecture"></a>
+<h2>Architecture</h2>
+
+	<p>
+		At it's core DoubleDollar is <a href="$$/$$.js" target="_blank">less than 50 lines of code</a> and is built on a Kernal style architecture. The Kernal does "just enough" to make everything else possible. In DoubleDollar's case, the Kernal performs the following functions:</p>
+	<ul>
+		<li>Create the $$ singleton/namespace.</li>
+		<li>Load (and merge) objects into the $$ namespace.</li>
+		<li>Pass all objects through a hook function.</li>
+		<li>Continue to perform the above, ad infinitum.</li>
+	</ul>
+	<p>DoubleDollar's Kernal is not a front-loader (aka Ruby-on-Rails, Cake PHP etc.) as it has no delegate responsibilities of it's own, and as such its behavior entirely depends on the add-ons loaded at run-time. 
+		</p>	
+	<p>
+		These can be switched-up up as needed with <a href="apps/introduction/app/$$._bootstrap.js" target="_blank">$$._bootstrap.js</a>. In general, DoubleDollar acts as a web client framework. However, it could just as easily act as a server-side framework in conjunction with node.js.
+	</p>
+	
+	<p>
+		DoubleDollar's modular lazy-load add-on architecture means that you'll only ever load exactly what you need when you need it. This ensures faster load and an optimum user experience.
+	</p>
+
+<a name="hash:convention"></a>
+<h2>Convention</h2>
+
+<p>DoubleDollar makes strong use of naming and organization to make code easy to understand for you and your team. Code is generally sub-grouped into the following simple cohesive units.</p>
+
+<code>
+$$
+({
+	user : <s> // ie. $$.user, $$.dashboard , $$.myAddon, etc.</s>
+	{
+		state : <s> // ie. $$.user.state.isLoggedIn</s>
+		{
+		},
+		
+		route : <s>// ie. $$.user.route.login()</s>
+		{
+		},
+		
+		do : <s>// ie. $$.user.do.login()</s>
+		{
+		},
+		
+		tpl :  <s>// ie. $$.user.tpl.login()</s>
+		{
+		},
+		
+		ui :  <s>// ie. $$.user.ui.redrawLogin()</s>
+		{
+		},
+		
+		bind : <s>// ie. $$.user.bind.login()</s>
+		{
+		},
+		
+		model : <s>// ie. $$.user.model.login()</s>
+		{
+		}
+	}
+})
+</code>
+
+
+<p>DoubleDollar follows <a href="http://en.wikipedia.org/wiki/Indent_style#Allman_style" target="_blank">Allman style</a> indenting.</p>
+	
+
+<a name="hash:enhancing"></a>
+<h2>Enhancing</h2>
+
+<p>
+	We would love you to cretae add-ons, components and even core functionality for DoubleDollar. Here are some examples of great add-ons just waiting to be built.
+</p>
+
+<ul>
+	<li>Automagical event binding</li>
+	<li>Formalized models</li>
+	<li>Node.js integration</li>
+	<li>UI components</li>
+	<li>Validators</li>
+	<li>Whatever you can think of!</li>
+</ul>
+
+<a name="hash:mobile"></a>
+<h2>Mobile</h2>
+
+<p>
+	One of the main use-cases for DoubleDollar is to build mobile applicatons. Right now we are laying the foundations for that work. We are building mobile awareness into appropriate add-ons, such as <b>$$.js.(bindings)</b>, to optimize the mobile experience for end users.
+</p>
+<p>
+	We believe that building a <b>native feeling</b> mobile experience with JavaScript is as much about attention to detail and education, as it is about framework components.
+</p>
+
+<a name="hash:about"></a>
+<h2>About</h2>
+
+<p>
+	Created by <a href="http://justinvincent.com" target="_blank">Justin Vincent</a>
+</p>
+
+
+
+
+<div style="height: 1000px;"></div>
+
+		
+		</div>
+		<div id="footer">
+			<p>
+				<a href="http://doubledollarjs.com">DoubleDollar</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

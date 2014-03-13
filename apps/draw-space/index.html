@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>DrawSpace (DoubleDollar)</title>
+<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="../../$$/lib/head.load.min.js"></script>
+<script>head.js('app/$$._bootstrap.js');</script>
+<style>
+#canvas1
+{
+	border: solid black 1px;
+	width: 90%;
+	height: 600px;
+	margin: 0 auto;
+}
+#canvas2
+{
+	border: solid black 1px;
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+</style>
+</head>
+<body style="text-align: center;">
+<div id="drawSpace1">
+	<div id="canvas1"></div>
+	<a href="#" class="undo">Undo</a> <a href="#" class="redo">Redo</a> <a href="#" class="clear">Clear</a>
+	<br>
+	<a href="#" class="red">Red</a> <a href="#" class="blue">Blue</a> <a href="#" class="green">Green</a>
+</div>
+
+<div id="drawSpace2">
+	<div id="canvas2"></div>
+	<a href="#" class="undo">Undo</a> <a href="#" class="redo">Redo</a> <a href="#" class="clear">Clear</a>
+	<br>
+	<a href="#" class="red">Red</a> <a href="#" class="blue">Blue</a> <a href="#" class="green">Green</a>
+</div>
+
+</body>
+</html>

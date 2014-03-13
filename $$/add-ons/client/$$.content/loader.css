@@ -1,0 +1,55 @@
+.loader .message
+{
+	display: inline-block;
+	margin: 1px 0 0 27px;
+	position: absolute;
+}
+
+.loader .ball
+{
+	width: 0;
+	height: 0;
+	border-bottom: 10px solid #BCDCF4;
+	border-top: 10px solid #BCDCF4;
+	border-left: 10px solid #5082AA;
+	border-right: 10px solid #5082AA;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	display: inline-block;
+}
+.loader .ball
+{
+	-webkit-animation-name: rotateThis;
+	-webkit-animation-duration:0.3s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+	
+	-moz-animation-name: rotateThis;
+	-moz-animation-duration:0.3s;
+	-moz-animation-iteration-count:infinite;
+	-moz-animation-timing-function:linear;
+	
+	-o-animation-name: rotateThis;
+	-o-animation-duration:0.3s;
+	-o-animation-iteration-count:infinite;
+	-o-animation-timing-function:linear;
+}
+
+@-webkit-keyframes rotateThis
+{
+	from {-webkit-transform:rotate(0deg);}
+	to {-webkit-transform:rotate(360deg);}
+}
+
+@-moz-keyframes rotateThis
+{
+	from {-moz-transform:rotate(0deg);}
+	to {-moz-transform:rotate(360deg);}
+}
+
+@-o-keyframes rotateThis
+{
+	from {-o-transform:rotate(0deg);}
+	to {-o-transform:rotate(360deg);}
+}
